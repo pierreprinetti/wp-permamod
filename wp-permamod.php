@@ -2,7 +2,7 @@
 /**
  * Plugin Name: wp-permamod
  * Plugin URI: http://wp-permamod.prinetti.it
- * Description: Basically, I add an anchor to the permalinks.
+ * Description: I add an anchor to the permalinks.
  * Version: 0.1
  * Author: qrawl
  * Author URI: http://qrawl.prinetti.it
