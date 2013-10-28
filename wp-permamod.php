@@ -3,7 +3,7 @@
  * Plugin Name: wp-permamod
  * Plugin URI: http://wp-permamod.prinetti.it
  * Description: I add an anchor to the permalinks.
- * Version: 0.1
+ * Version: 0.2
  * Author: qrawl
  * Author URI: http://qrawl.prinetti.it
  * License: GPLv2
@@ -25,11 +25,25 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function add_permalink_anchor($url) {
-	$anchor = 'content';
-	return $url . '#' . $anchor;
+function append_anchor($url) {
+	$anchor = "content";
+	if (strpos($url,'#') !== false) {
+		return $url;
+	}
+	else {
+		return "{$url}#{$anchor}";
+	}
 }
 
-add_filter('the_permalink', 'add_permalink_anchor');
+function add_post_permalink_anchor( $url, $post, $leavename ) {
+	return append_anchor($url);
+}
+
+function add_page_permalink_anchor( $url, $page ) {
+	return append_anchor($url);
+}
+
+add_filter('post_link', 'add_post_permalink_anchor');
+add_filter('page_link', 'add_page_permalink_anchor');
 
 ?>
