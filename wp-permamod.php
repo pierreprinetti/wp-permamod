@@ -35,7 +35,7 @@ function append_anchor($url) {
 	}
 }
 
-function add_post_permalink_anchor( $url, $post, $leavename ) {
+function add_post_permalink_anchor( $url, $post ) {
 	return append_anchor($url);
 }
 
