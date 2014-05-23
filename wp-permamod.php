@@ -3,7 +3,7 @@
  * Plugin Name: wp-permamod
  * Plugin URI: https://github.com/qrawl/wp-permamod
  * Description: I add an anchor to page and post permalinks.
- * Version: 0.2
+ * Version: 0.5
  * Author: qrawl
  * Author URI: http://pierreprinetti.net
  * License: GPLv2
@@ -43,7 +43,7 @@ function add_page_permalink_anchor( $url, $page ) {
 	return append_anchor($url);
 }
 
-add_filter('post_link', 'add_post_permalink_anchor', 10);
-add_filter('page_link', 'add_page_permalink_anchor', 10);
+add_filter('post_link', 'add_post_permalink_anchor', 10, 3);
+add_filter('page_link', 'add_page_permalink_anchor', 10, 2);
 
 ?>
