@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/qrawl/wp-permamod
  * Description: I add an anchor to page and post permalinks.
  * Version: 0.5
- * Author: qrawl
+ * Author: Pierre Prinetti
  * Author URI: http://pierreprinetti.net
  * License: GPLv2
  */
