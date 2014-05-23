@@ -35,7 +35,7 @@ function append_anchor($url) {
 	}
 }
 
-function add_post_permalink_anchor( $url, $post ) {
+function add_post_permalink_anchor( $url, $post, $leavename ) {
 	return append_anchor($url);
 }
 
@@ -43,7 +43,7 @@ function add_page_permalink_anchor( $url, $page ) {
 	return append_anchor($url);
 }
 
-add_filter('post_link', 'add_post_permalink_anchor');
-add_filter('page_link', 'add_page_permalink_anchor');
+add_filter('post_link', 'add_post_permalink_anchor', 10);
+add_filter('page_link', 'add_page_permalink_anchor', 10);
 
 ?>
