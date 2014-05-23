@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name: wp-permamod
- * Plugin URI: http://wp-permamod.prinetti.it
- * Description: I add an anchor to the permalinks.
+ * Plugin URI: https://github.com/qrawl/wp-permamod
+ * Description: I add an anchor to page and post permalinks.
  * Version: 0.2
  * Author: qrawl
- * Author URI: http://qrawl.prinetti.it
+ * Author URI: http://pierreprinetti.net
  * License: GPLv2
  */
 
-/*  Copyright 2013  Pierre Prinetti  (email : qrawl@prinetti.it)
+/*  Copyright 2013  Pierre Prinetti  (http://pierreprinetti.net)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
