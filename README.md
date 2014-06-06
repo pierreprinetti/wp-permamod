@@ -1,4 +1,4 @@
 wp-permamod
 ===========
 
-Wordpress plugin to modify links to posts and pages adding anchors.
+A Wordpress plugin that adds anchor reference to post and page links.
