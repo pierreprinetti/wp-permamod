@@ -106,12 +106,12 @@ function wp_permamod_options_page(  ) {
 }
 
 function append_anchor($url) {
-    $options = get_option( 'permamod_settings' );
-	if (strpos($url,'#') !== false) {
+    $anchor = get_option( 'permamod_settings' )['permamod_anchor_name'];
+	if (strpos($url,'#') !== false or $anchor == "") {
 		return $url;
 	}
 	else {
-		return "{$url}#"  . $options['permamod_anchor_name'];
+		return "{$url}#"  . $anchor;
 	}
 }
 
