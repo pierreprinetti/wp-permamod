@@ -53,14 +53,14 @@ function permamod_settings_init(  ) {
 
     add_settings_section(
         'permamod_pluginPage_section', 
-        __( 'Your section description', 'wp_permamod' ), 
+        __( '', 'wp_permamod' ), 
         'permamod_settings_section_callback', 
         'pluginPage'
     );
 
     add_settings_field( 
         'permamod_anchor_name', 
-        __( 'Settings field description', 'wp_permamod' ), 
+        __( 'Anchor name', 'wp_permamod' ), 
         'permamod_anchor_name_render', 
         'pluginPage', 
         'permamod_pluginPage_section' 
@@ -82,7 +82,8 @@ function permamod_anchor_name_render(  ) {
 
 function permamod_settings_section_callback(  ) { 
 
-    echo __( 'This section description', 'wp_permamod' );
+    echo __( 'Please enter the text that will be appended to your permalinks,
+        omitting the `#`', 'wp_permamod' );
 
 }
 
