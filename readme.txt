@@ -3,7 +3,7 @@ Contributors: qrawl
 Tags: permalink, anchor
 Requires at least: 2.7
 Tested up to: 3.9.1
-Stable tag: 0.2
+Stable tag: 0.2.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ you still want that beautiful picture to be there :)
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 0.2.1 =
+* Small fix to handle the case you've not set an anchor name.
 
 = 0.2 =
 * Now asks you for a custom anchor name
