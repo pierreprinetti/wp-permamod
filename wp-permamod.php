@@ -3,7 +3,7 @@
  * Plugin Name: wp-permamod
  * Plugin URI: https://github.com/qrawl/wp-permamod
  * Description: I add an anchor to page and post permalinks.
- * Version: 0.5
+ * Version: 0.2
  * Author: Pierre Prinetti
  * Author URI: http://pierreprinetti.net
  * License: GPLv2
@@ -25,13 +25,93 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+add_action( 'admin_menu', 'permamod_add_admin_menu' );
+add_action( 'admin_init', 'permamod_settings_init' );
+
+
+function permamod_add_admin_menu(  ) { 
+
+    add_options_page( 'wp_permamod', 'wp_permamod', 'manage_options', 'wp_permamod', 'wp_permamod_options_page' );
+
+}
+
+
+function permamod_settings_exist(  ) { 
+
+    if( false == get_option( 'wp_permamod_settings' ) ) { 
+
+        add_option( 'wp_permamod_settings' );
+
+    }
+
+}
+
+
+function permamod_settings_init(  ) { 
+
+    register_setting( 'pluginPage', 'permamod_settings' );
+
+    add_settings_section(
+        'permamod_pluginPage_section', 
+        __( 'Your section description', 'wp_permamod' ), 
+        'permamod_settings_section_callback', 
+        'pluginPage'
+    );
+
+    add_settings_field( 
+        'permamod_anchor_name', 
+        __( 'Settings field description', 'wp_permamod' ), 
+        'permamod_anchor_name_render', 
+        'pluginPage', 
+        'permamod_pluginPage_section' 
+    );
+
+
+}
+
+
+function permamod_anchor_name_render(  ) { 
+
+    $options = get_option( 'permamod_settings' );
+    ?>
+    <input type='text' name='permamod_settings[permamod_anchor_name]' value='<?php echo $options['permamod_anchor_name']; ?>'>
+    <?php
+
+}
+
+
+function permamod_settings_section_callback(  ) { 
+
+    echo __( 'This section description', 'wp_permamod' );
+
+}
+
+
+function wp_permamod_options_page(  ) { 
+
+    ?>
+    <form action='options.php' method='post'>
+        
+        <h2>wp_permamod</h2>
+        
+        <?php
+        settings_fields( 'pluginPage' );
+        do_settings_sections( 'pluginPage' );
+        submit_button();
+        ?>
+        
+    </form>
+    <?php
+
+}
+
 function append_anchor($url) {
-	$anchor = "content";
+    $options = get_option( 'permamod_settings' );
 	if (strpos($url,'#') !== false) {
 		return $url;
 	}
 	else {
-		return "{$url}#{$anchor}";
+		return "{$url}#"  . $options['permamod_anchor_name'];
 	}
 }
 
