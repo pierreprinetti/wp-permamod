@@ -7,8 +7,8 @@ Stable tag: 0.2.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin adds an anchor to page and post permalinks, which can
-point to an existant anchor in your template.
+Very simple plugin that adds an anchor to page and post permalinks,
+which can point to an existant anchor in your template.
 
 == Description ==
 
@@ -16,7 +16,10 @@ Set your anchor name in the options page.
 
 Typical use case: a big picture in the header you don't want people
 to be bothered with every time they click on an internal link. But
-you still want that beautiful picture to be there :)
+you still want that beautiful picture to be there.
+
+Feel free to contribute:  
+github.com/qrawl/wp-permamod
 
 == Installation ==
 
