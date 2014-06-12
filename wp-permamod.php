@@ -30,27 +30,19 @@ add_action( 'admin_init', 'permamod_settings_init' );
 
 
 function permamod_add_admin_menu(  ) { 
-
     add_options_page( 'wp_permamod', 'wp_permamod', 'manage_options', 'wp_permamod', 'wp_permamod_options_page' );
-
 }
 
 
 function permamod_settings_exist(  ) { 
-
     if( false == get_option( 'wp_permamod_settings' ) ) { 
-
         add_option( 'wp_permamod_settings' );
-
     }
-
 }
 
 
 function permamod_settings_init(  ) { 
-
     register_setting( 'pluginPage', 'permamod_settings' );
-
     add_settings_section(
         'permamod_pluginPage_section', 
         __( '', 'wp_permamod' ), 
@@ -65,31 +57,24 @@ function permamod_settings_init(  ) {
         'pluginPage', 
         'permamod_pluginPage_section' 
     );
-
-
 }
 
 
 function permamod_anchor_name_render(  ) { 
-
     $options = get_option( 'permamod_settings' );
     ?>
     <input type='text' name='permamod_settings[permamod_anchor_name]' value='<?php echo $options['permamod_anchor_name']; ?>'>
     <?php
-
 }
 
 
 function permamod_settings_section_callback(  ) { 
-
     echo __( 'Please enter the text that will be appended to your permalinks,
         omitting the `#`', 'wp_permamod' );
-
 }
 
 
 function wp_permamod_options_page(  ) { 
-
     ?>
     <form action='options.php' method='post'>
         
@@ -100,7 +85,6 @@ function wp_permamod_options_page(  ) {
         do_settings_sections( 'pluginPage' );
         submit_button();
         ?>
-        
     </form>
     <?php
 
