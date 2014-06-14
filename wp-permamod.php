@@ -3,7 +3,7 @@
  * Plugin Name: wp-permamod
  * Plugin URI: http://www.pierreprinetti.net/wp-permamod/
  * Description: A Wordpress plugin that adds anchor reference to post and page links.
- * Version: 0.2.2
+ * Version: 0.2.3
  * Author: Pierre Prinetti
  * Author URI: http://www.pierreprinetti.net
  * License: GPLv2
@@ -25,71 +25,60 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-add_action( 'admin_init', 'permamod_settings_init' );
-
-
-function permamod_settings_exist(  ) {
-    if( false == get_option( 'wp_permamod_settings' ) ) {
-        add_option( 'wp_permamod_settings' );
+function wp_permamod_settings_exist(  ) {
+    if( false == get_option( 'permamod_settings' ) ) {
+            add_option( 'permamod_settings' );
     }
 }
 
-function permamod_settings_init(  ) {
-    register_setting( 'permalink', 'permamod_settings' );
-    add_settings_section(
-        'permamod_pluginPage_section',
-        __( '', 'wp_permamod' ),
-        'permamod_settings_section_callback',
-        'permalink'
+function permamod_settings_init() {
+    register_setting(
+        'permalink',
+        'permamod_settings',
+        'permamod_validate'
     );
-
     add_settings_field(
-        'permamod_anchor_name',
+        'permamod_anchor',
         __( 'Anchor name', 'wp_permamod' ),
         'permamod_anchor_name_render',
         'permalink',
-        'permamod_pluginPage_section'
+        'optional'
     );
 }
 
+add_action( 'admin_init', 'permamod_settings_init' );
 
-function permamod_anchor_name_render(  ) {
-    $options = get_option( 'permamod_settings' );
-    ?>
-    <input type='text' name='permamod_settings[permamod_anchor_name]' value='<?php echo $options['permamod_anchor_name']; ?>'>
-    <?php
+function permamod_anchor_name_render() {
+    $option = get_option('permamod_settings');
+    $anchor = $option['anchor_name'];
+    echo "<input id=\"anchor_name\" name=\"permamod_settings[permamod_anchor_name]\" type=\"text\"  value=\"{$anchor}\" class=\"regular text code\">";
 }
 
-
-function permamod_settings_section_callback(  ) {
-    echo __( 'Please enter the text that will be appended to your permalinks,
-        omitting the `#`', 'wp_permamod' );
+function permamod_validate( $input ) {
+    $valid = array();
+    $anchor_name = $input['anchor_name'];
+    if (substr($anchor_name, 0, 1) == "#") {
+        $valid['anchor_name'] = substr($anchor_name, 1);
+    } else {
+        $valid['anchor_name'] = $anchor_name;
+    } 
+    return $valid;
 }
 
-
-function wp_permamod_options_page(  ) {
-    ?>
-    <form action='options.php' method='post'>
-       
-        <h2>wp_permamod</h2>
-       
-        <?php
-        settings_fields( 'pluginPage' );
-        do_settings_sections( 'pluginPage' );
-        submit_button();
-        ?>
-    </form>
-    <?php
-
-}
+ // ------------------------------------------------------------------
+ // Core function
+ // ------------------------------------------------------------------
+ //
+ // This function appends the anchor to a given string
+ // 
 
 function append_anchor($url) {
-    $anchor = get_option( 'permamod_settings' )['permamod_anchor_name'];
+    $anchor = get_option('permamod_settings')['anchor_name'];
 	if (strpos($url,'#') !== false or $anchor == "") {
 		return $url;
 	}
 	else {
-		return "{$url}#"  . $anchor;
+		return "{$url}#" . $anchor;
 	}
 }
 
