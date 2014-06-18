@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: wp-permamod
+ * Plugin Name: wp_permamod
  * Plugin URI: http://www.pierreprinetti.net/wp-permamod/
  * Description: A Wordpress plugin that adds anchor reference to post and page links.
- * Version: 0.2.3
+ * Version: 0.2.4
  * Author: Pierre Prinetti
  * Author URI: http://www.pierreprinetti.net
  * License: GPLv2
@@ -25,17 +25,11 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function wp_permamod_settings_exist(  ) {
-    if( false == get_option( 'permamod_settings' ) ) {
-            add_option( 'permamod_settings' );
-    }
-}
-
-function permamod_settings_init() {
+function permamod_init() {
     register_setting(
         'permalink',
-        'permamod_settings',
-        'permamod_validate'
+        'permamod'
+        //'permamod_validate'
     );
     add_settings_field(
         'permamod_anchor',
@@ -46,12 +40,12 @@ function permamod_settings_init() {
     );
 }
 
-add_action( 'admin_init', 'permamod_settings_init' );
+add_action( 'admin_init', 'permamod_init' );
 
 function permamod_anchor_name_render() {
-    $option = get_option('permamod_settings');
+    $option = get_option('permamod');
     $anchor = $option['anchor_name'];
-    echo "<input id=\"anchor_name\" name=\"permamod_settings[permamod_anchor_name]\" type=\"text\"  value=\"{$anchor}\" class=\"regular text code\">";
+    echo "<input id=\"anchor_name\" name=\"permamod[anchor_name]\" type=\"text\"  value=\"{$anchor}\" class=\"regular text code\">";
 }
 
 function permamod_validate( $input ) {
@@ -73,7 +67,7 @@ function permamod_validate( $input ) {
  // 
 
 function append_anchor($url) {
-    $anchor = get_option('permamod_settings')['anchor_name'];
+    $anchor = get_option('permamod')['anchor_name'];
 	if (strpos($url,'#') !== false or $anchor == "") {
 		return $url;
 	}
