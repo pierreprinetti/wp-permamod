@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== wp-permamod ===
 Contributors: qrawl
 Tags: permalink, anchor
 Requires at least: 2.7
