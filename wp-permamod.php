@@ -3,7 +3,7 @@
  * Plugin Name: wp_permamod
  * Plugin URI: http://www.pierreprinetti.net/wp-permamod/
  * Description: A Wordpress plugin that adds anchor reference to post and page links.
- * Version: 0.2.4
+ * Version: 0.3
  * Author: Pierre Prinetti
  * Author URI: http://www.pierreprinetti.net
  * License: GPLv2
@@ -25,63 +25,22 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-function permamod_init() {
-    register_setting(
-        'permalink',
-        'permamod'
-        //'permamod_validate'
-    );
-    add_settings_field(
-        'permamod_anchor',
-        __( 'Anchor name', 'wp_permamod' ),
-        'permamod_anchor_name_render',
-        'permalink',
-        'optional'
-    );
-}
-
-add_action( 'admin_init', 'permamod_init' );
-
-function permamod_anchor_name_render() {
-    $option = get_option('permamod');
-    $anchor = $option['anchor_name'];
-    echo "<input id=\"anchor_name\" name=\"permamod[anchor_name]\" type=\"text\"  value=\"{$anchor}\" class=\"regular text code\">";
-}
-
-function permamod_validate( $input ) {
-    $valid = array();
-    $anchor_name = $input['anchor_name'];
-    if (substr($anchor_name, 0, 1) == "#") {
-        $valid['anchor_name'] = substr($anchor_name, 1);
-    } else {
-        $valid['anchor_name'] = $anchor_name;
-    } 
-    return $valid;
-}
-
- // ------------------------------------------------------------------
- // Core function
- // ------------------------------------------------------------------
- //
- // This function appends the anchor to a given string
- // 
-
 function append_anchor($url) {
-    $anchor = get_option('permamod')['anchor_name'];
-	if (strpos($url,'#') !== false or $anchor == "") {
-		return $url;
-	}
-	else {
-		return "{$url}#" . $anchor;
-	}
+    $anchor = "content";
+    if (strpos($url,'#') !== false) {
+        return $url;
+    }
+    else {
+        return "{$url}#{$anchor}";
+    }
 }
 
 function add_post_permalink_anchor( $url, $post, $leavename ) {
-	return append_anchor($url);
+    return append_anchor($url);
 }
 
 function add_page_permalink_anchor( $url, $page ) {
-	return append_anchor($url);
+    return append_anchor($url);
 }
 
 add_filter('post_link', 'add_post_permalink_anchor', 10, 3);
