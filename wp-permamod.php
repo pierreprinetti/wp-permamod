@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: wp_permamod
+ * Plugin Name: wp-permamod
  * Plugin URI: http://www.pierreprinetti.net/wp-permamod/
  * Description: A Wordpress plugin that adds anchor reference to post and page links.
  * Version: 0.3
