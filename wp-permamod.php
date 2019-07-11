@@ -3,13 +3,13 @@
  * Plugin Name: wp-permamod
  * Plugin URI: http://www.pierreprinetti.net/wp-permamod/
  * Description: A Wordpress plugin that adds anchor reference to post and page links.
- * Version: 0.3.1
+ * Version: 0.3.2
  * Author: Pierre Prinetti
- * Author URI: http://www.pierreprinetti.net
+ * Author URI: https://pierreprinetti.com
  * License: GPLv2
  */
 
-/*  Copyright 2013  Pierre Prinetti  (http://www.pierreprinetti.net)
+/*  Copyright 2019  Pierre Prinetti  (https://pierreprinetti.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as

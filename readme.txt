@@ -1,9 +1,9 @@
 === wp-permamod ===
-Contributors: qrawl
+Contributors: pierreprinetti
 Tags: permalink, anchor
 Requires at least: 2.7
-Tested up to: 4.0.1
-Stable tag: 0.3.1
+Tested up to: 5.2.2
+Stable tag: 0.3.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ to be bothered with every time they click on an internal link. But
 you still want that beautiful picture to be there.
 
 Feel free to contribute:  
-github.com/qrawl/wp-permamod
+github.com/pierreprinetti/wp-permamod
 
 == Installation ==
 
@@ -31,6 +31,9 @@ OR
 Just use the automated function from inside your Wordpress dashboard.
 
 == Changelog ==
+
+= 0.3.2 =
+* Update the latest tested Wordpress version
 
 = 0.3 =
 * Revert to 0.1, working on unstable features in a separate branch
